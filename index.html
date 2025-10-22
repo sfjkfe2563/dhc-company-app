@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHC COMPANY - Uganda's Premier Event Management</title>
+    <meta name="theme-color" content="#ff6b35">
+    <meta name="description" content="Professional event management in Uganda - Weddings, Parties, Corporate Events with 10+ years experience">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7931e;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --success: #25D366;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .p-1 { padding: 1rem; }
+        .hidden { display: none !important; }
+
+        /* Header Styles */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.3rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .dropdown-menu {
+            background: var(--dark);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: var(--white);
+            padding: 1rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0;
+            z-index: 1000;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-item {
+            color: var(--white);
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+            padding: 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            opacity: 1;
+            color: var(--secondary);
+        }
+
+        .nav-icon {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin: 80px 0 70px 0;
+            padding: 1rem;
+            min-height: calc(100vh - 150px);
+        }
+
+        /* Page Transitions */
+        .page {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin: 0.5rem 0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            width: 100%;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp {
+            background: var(--success);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 3rem 1rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Service Cards */
+        .service-grid, .services-full-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 1.5rem 1rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:active {
+            transform: scale(0.95);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-name {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .service-desc {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Contact Styles */
+        .contact-info {
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            display: block;
+            margin: 0.3rem 0;
+        }
+
+        .action-buttons {
+            margin: 2rem 0;
+        }
+
+        /* Typography */
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            font-size: 1.8rem;
+        }
+
+        .section-title {
+            margin: 2rem 0 1rem 0;
+            color: var(--dark);
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        /* Features Section */
+        .features-grid, .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card, .talent-card, .leader-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .gallery-item {
+            background: #ddd;
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            background: linear-gradient(45deg, #ddd, #eee);
+        }
+
+        /* Booking Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* About Page */
+        .about-content {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .service-grid, .services-full-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .action-buttons {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // DHC COMPANY App - Complete All-in-One Code
+        class DHCApp {
+            constructor() {
+                this.currentPage = 'home';
+                this.services = [
+                    { icon: '🎓', name: 'Graduation Parties', desc: 'Celebrate academic achievements' },
+                    { icon: '💒', name: 'Wedding Ceremonies', desc: 'Dream wedding planning' },
+                    { icon: '🏢', name: 'Corporate Events', desc: 'Professional business functions' },
+                    { icon: '⚰️', name: 'Burial Ceremonies', desc: 'Dignified memorial services' },
+                    { icon: '🎉', name: 'Birthday Parties', desc: 'Memorable celebrations' },
+                    { icon: '⛪', name: 'Church Events', desc: 'Religious ceremonies' },
+                    { icon: '🕌', name: 'Mosque Events', desc: 'Islamic celebrations' },
+                    { icon: '🏫', name: 'School Events', desc: 'Educational functions' },
+                    { icon: '🎪', name: 'Exhibitions', desc: 'Trade shows and displays' },
+                    { icon: '⚽', name: 'Sports Events', desc: 'Athletic competitions' }
+                ];
+                this.init();
+            }
+
+            init() {
+                this.renderApp();
+                this.setupServiceWorker();
+                this.bindEvents();
+            }
+
+            renderApp() {
+                document.getElementById('app').innerHTML = this.getAppHTML();
+            }
+
+            getAppHTML() {
+                return `
+                    ${this.getHeader()}
+                    ${this.getMainContent()}
+                    ${this.getNavigation()}
+                `;
+            }
+
+            getHeader() {
+                return `
+                    <header class="app-header">
+                        <div class="header-content">
+                            <div class="logo">
+                                <h1>DHC COMPANY</h1>
+                                <p>Event Management Experts</p>
+                            </div>
+                            <div class="header-actions">
+                                <button class="btn-icon" onclick="app.toggleMenu()">☰</button>
+                            </div>
+                        </div>
+                        <div class="dropdown-menu hidden" id="dropdownMenu">
+                            <a href="#" onclick="app.showPage('home')">Home</a>
+                            <a href="#" onclick="app.showPage('about')">About Us</a>
+                            <a href="#" onclick="app.showPage('services')">Services</a>
+                            <a href="#" onclick="app.showPage('gallery')">Gallery</a>
+                            <a href="#" onclick="app.showPage('contact')">Contact</a>
+                        </div>
+                    </header>
+                `;
+            }
+
+            getNavigation() {
+                return `
+                    <nav class="bottom-nav">
+                        <a class="nav-item ${this.currentPage === 'home' ? 'active' : ''}" 
+                           onclick="app.showPage('home')">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-label">Home</span>
+                        </a>
+                        <a class="nav-item ${this.currentPage === 'services' ? 'active' : ''}" 
+                           onclick="app.showPage('services')">
+                            <span class="nav-icon">🎯</span>
+                            <span class="nav-label">Services</span>
+                        </a>
+                        <a class="nav-item ${this.currentPage === 'gallery' ? 'active' : ''}" 
+                           onclick="app.showPage('gallery')">
+                            <span class="nav-icon">🖼️</span>
+                            <span class="nav-label">Gallery</span>
+                        </a>
+                        <a class="nav-item ${this.currentPage === 'contact' ? 'active' : ''}" 
+                           onclick="app.showPage('contact')">
+                            <span class="nav-icon">📞</span>
+                            <span class="nav-label">Contact</span>
+                        </a>
+                        <a class="nav-item ${this.currentPage === 'booking' ? 'active' : ''}" 
+                           onclick="app.showPage('booking')">
+                            <span class="nav-icon">📅</span>
+                            <span class="nav-label">Book</span>
+                        </a>
+                    </nav>
+                `;
+            }
+
+            getMainContent() {
+                return `
+                    <main class="main-content">
+                        ${this.getPageContent()}
+                    </main>
+                `;
+            }
+
+            getPageContent() {
+                switch(this.currentPage) {
+                    case 'home': return this.getHomePage();
+                    case 'services': return this.getServicesPage();
+                    case 'gallery': return this.getGalleryPage();
+                    case 'contact': return this.getContactPage();
+                    case 'booking': return this.getBookingPage();
+                    case 'about': return this.getAboutPage();
+                    default: return this.getHomePage();
+                }
+            }
+
+            getHomePage() {
+                return `
+                    <div class="page home-page">
+                        <div class="hero-section">
+                            <div class="hero-content">
+                                <h1>Creating Unforgettable Memories</h1>
+                                <p>Over a Decade of Excellence in Event Management</p>
+                                <button class="btn-primary" onclick="app.showPage('booking')">
+                                    Book Your Event Today
+                                </button>
+                            </div>
+                        </div>
+
+                        <section class="quick-services">
+                            <h2 class="section-title">Our Services</h2>
+                            <div class="service-grid">
+                                ${this.getServiceCards().slice(0, 6).join('')}
+                            </div>
+                            <button class="btn-secondary" onclick="app.showPage('services')">
+                                View All Services
+                            </button>
+                        </section>
+
+                        <section class="features">
+                            <h2 class="section-title">Why Choose DHC COMPANY?</h2>
+                            <div class="features-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">⭐</div>
+                                    <h3>10+ Years Experience</h3>
+                                    <p>Decade of excellence in event management</p>
+                                </div>
+                                <div class="feature-card">
+                                    <div class="feature-icon">🎵</div>
+                                    <h3>Professional Sound</h3>
+                                    <p>State-of-the-art music systems</p>
+                                </div>
+                                <div class="feature-card">
+                                    <div class="feature-icon">🌍</div>
+                                    <h3>International Standards</h3>
+                                    <p>Local expertise, global quality</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">Events Done</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Client Satisfaction</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getServicesPage() {
+                return `
+                    <div class="page services-page">
+                        <h1 class="page-title">Our Event Services</h1>
+                        <div class="services-full-grid">
+                            ${this.getServiceCards().join('')}
+                        </div>
+                        
+                        <section class="talent-section">
+                            <h2 class="section-title">Our Professional Team</h2>
+                            <div class="talent-grid">
+                                <div class="talent-card">
+                                    <h3>🎧 Elite DJs</h3>
+                                    <p>Professional music mixing and entertainment</p>
+                                </div>
+                                <div class="talent-card">
+                                    <h3>🎤 Charismatic MCs</h3>
+                                    <p>Engaging hosts for seamless events</p>
+                                </div>
+                                <div class="talent-card">
+                                    <h3>💃 Energetic Dancers</h3>
+                                    <p>Professional dance performances</p>
+                                </div>
+                                <div class="talent-card">
+                                    <h3>😂 Hilarious Comedians</h3>
+                                    <p>Entertainment that keeps guests laughing</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                `;
+            }
+
+            getServiceCards() {
+                return this.services.map(service => `
+                    <div class="service-card" onclick="app.showServiceDetail('${service.name}')">
+                        <div class="service-icon">${service.icon}</div>
+                        <h3 class="service-name">${service.name}</h3>
+                        <p class="service-desc">${service.desc}</p>
+                    </div>
+                `);
+            }
+
+            getGalleryPage() {
+                return `
+                    <div class="page gallery-page">
+                        <h1 class="page-title">Our Work Gallery</h1>
+                        <p class="text-center">Add your photos and videos here to showcase your amazing work!</p>
+                        
+                        <div class="gallery-grid">
+                            <div class="gallery-item">Add Photo 1</div>
+                            <div class="gallery-item">Add Photo 2</div>
+                            <div class="gallery-item">Add Photo 3</div>
+                            <div class="gallery-item">Add Photo 4</div>
+                            <div class="gallery-item">Add Photo 5</div>
+                            <div class="gallery-item">Add Photo 6</div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn-primary" onclick="app.showPage('contact')">
+                                Contact for More Photos
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getContactPage() {
+                return `
+                    <div class="page contact-page">
+                        <h1 class="page-title">Contact DHC COMPANY</h1>
+                        
+                        <div class="contact-info">
+                            <div class="contact-card">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-details">
+                                    <h3>Our Location</h3>
+                                    <p>Kasangati Town Council, Wakiso District, Uganda</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-details">
+                                    <h3>Phone Numbers</h3>
+                                    <p><a href="tel:+256772212504" class="contact-link">+256772212504</a></p>
+                                    <p><a href="tel:+256708904008" class="contact-link">+256708904008</a></p>
+                                    <p><a href="tel:0752345309" class="contact-link">0752345309</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-card">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-details">
+                                    <h3>Email Address</h3>
+                                    <p><a href="mailto:stormbridge07@gmail.com" class="contact-link">stormbridge07@gmail.com</a></p>
+                                    <p><a href="mailto:innocentmwanji@gmail.com" class="contact-link">innocentmwanji@gmail.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn-primary" onclick="app.callNumber('+256772212504')">
+                                📞 Call Now
+                            </button>
+                            <button class="btn-whatsapp" onclick="app.sendWhatsApp()">
+                                💬 WhatsApp
+                            </button>
+                            <button class="btn-secondary" onclick="app.openEmail()">
+                                📧 Send Email
+                            </button>
+                        </div>
+
+                        <div class="leadership-section">
+                            <h2 class="section-title">Our Leadership</h2>
+                            <div class="leader-card">
+                                <h3>👑 CEO</h3>
+                                <p><strong>INNOCENT MWANJA FAMILY</strong></p>
+                                <p>Visionary leader with passion for perfection</p>
+                            </div>
+                            <div class="leader-card">
+                                <h3>💼 Manager</h3>
+                                <p><strong>KIIZA ONESMUS (Jeff Spears)</strong></p>
+                                <p>Financial strategist - REVOLUTIONARY ACCT Hedge Fund</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getBookingPage() {
+                return `
+                    <div class="page booking-page">
+                        <h1 class="page-title">Book Your Event</h1>
+                        
+                        <div class="about-content">
+                            <p>Fill out the form below and we'll contact you within 24 hours to discuss your event requirements.</p>
+                        </div>
+
+                        <form id="bookingForm" onsubmit="app.handleBooking(event)">
+                            <div class="form-group">
+                                <label class="form-label">Event Type</label>
+                                <select class="form-select" required>
+                                    <option value="">Select Event Type</option>
+                                    <option>Wedding Ceremony</option>
+                                    <option>Birthday Party</option>
+                                    <option>Graduation Party</option>
+                                    <option>Corporate Event</option>
+                                    <option>Burial Ceremony</option>
+                                    <option>Church Event</option>
+                                    <option>Mosque Event</option>
+                                    <option>School Event</option>
+                                    <option>Exhibition</option>
+                                    <option>Sports Event</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Your Name</label>
+                                <input type="text" class="form-input" placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-input" placeholder="Enter your phone number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Event Date</label>
+                                <input type="date" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Estimated Guests</label>
+                                <select class="form-select">
+                                    <option>Less than 50</option>
+                                    <option>50-100</option>
+                                    <option>100-200</option>
+                                    <option>200-500</option>
+                                    <option>500+</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Additional Requirements</label>
+                                <textarea class="form-textarea" placeholder="Tell us about your specific needs..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary">Submit Booking Request</button>
+                        </form>
+                    </div>
+                `;
+            }
+
+            getAboutPage() {
+                return `
+                    <div class="page about-page">
+                        <h1 class="page-title">About DHC COMPANY</h1>
+                        
+                        <div class="about-content">
+                            <h2>Uganda's Premier Event Management Powerhouse</h2>
+                            <p>For nearly a decade, DHC COMPANY has been the undisputed leader in event management across Uganda and internationally. Based in Kasangati Town Council, Wakiso District, we've mastered the art of creating unforgettable experiences that transcend borders and cultures.</p>
+                            
+                            <h3>Our Mission</h3>
+                            <p>To deliver exceptional event experiences that exceed client expectations through innovation, professionalism, and attention to detail.</p>
+                            
+                            <h3>Our Vision</h3>
+                            <p>To be East Africa's most trusted and innovative event management company, setting new standards in the industry.</p>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">Successful Events</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Professional Staff</span>
+                            </div>
+                        </div>
+
+                        <div class="features">
+                            <h2 class="section-title">Our Capabilities</h2>
+                            <div class="features-grid">
+                                <div class="feature-card">
+                                    <h3>🎵 Sound Systems</h3>
+                                    <p>Professional audio equipment for crystal clear sound</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>💡 Lighting</h3>
+                                    <p>Advanced lighting for perfect ambiance</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>🎬 Video Production</h3>
+                                    <p>Professional recording and live streaming</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h3>🎪 Event Planning</h3>
+                                    <p>Complete event coordination and management</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Navigation and Page Management
+            showPage(page) {
+                this.currentPage = page;
+                this.renderApp();
+                window.scrollTo(0, 0);
+                this.hideMenu();
+            }
+
+            toggleMenu() {
+                const menu = document.getElementById('dropdownMenu');
+                menu.classList.toggle('hidden');
+            }
+
+            hideMenu() {
+                const menu = document.getElementById('dropdownMenu');
+                menu.classList.add('hidden');
+            }
+
+            // Contact Functions
+            callNumber(phoneNumber) {
+                window.open(`tel:${phoneNumber}`, '_self');
+            }
+
+            sendWhatsApp() {
+                const message = "Hello DHC COMPANY! I'm interested in your event services. Please provide more information.";
+                const phone = "256772212504";
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+            }
+
+            openEmail() {
+                const subject = "Event Inquiry - DHC COMPANY";
+                const body = "Hello DHC COMPANY,\n\nI would like to inquire about your event services.\n\nPlease contact me with more information.\n\nBest regards,";
+                window.open(`mailto:stormbridge07@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank');
+            }
+
+            // Service Detail View
+            showServiceDetail(serviceName) {
+                alert(`More details about ${serviceName} coming soon! You can contact us for specific requirements.`);
+            }
+
+            // Booking Form Handler
+            handleBooking(event) {
+                event.preventDefault();
+                alert('Thank you for your booking request! We will contact you within 24 hours to discuss your event.');
+                this.showPage('home');
+            }
+
+            // PWA Functionality
+            setupServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('Service Worker registered:', registration);
+                        })
+                        .catch(error => {
+                            console.log('Service Worker registration failed:', error);
+                        });
+                }
+            }
+
+            bindEvents() {
+                // Add any additional event bindings here
+            }
+        }
+
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.app = new DHCApp();
+        });
+    </script>
+</body>
+</html>
